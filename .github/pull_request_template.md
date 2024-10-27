@@ -1,6 +1,6 @@
 ## 🚀 작업 내용
 ## 📸 이슈 번호
-- close ...#<이슈번호>
+- close #<이슈번호>
 ## 👀 Focus Commits [Optional]
 - 커밋해시: 내용
 ## ✍ 궁금한 점
