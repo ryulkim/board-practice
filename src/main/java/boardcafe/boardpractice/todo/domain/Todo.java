@@ -24,4 +24,8 @@ public class Todo extends BaseEntity {
     public Todo(final String content){
         this.content=content;
     }
+
+    public void updateCompleted(){
+        this.completed=!this.completed;
+    }
 }

@@ -1,5 +1,6 @@
 package boardcafe.boardpractice.common.exception;
 
+import boardcafe.boardpractice.todo.exception.TodoNotFoundException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
@@ -42,10 +43,19 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .body(new ExceptionResponse(INVALID_REQUEST, errorMessage));
     }
 
+    @ExceptionHandler(TodoNotFoundException.class)
+    public ResponseEntity<ExceptionResponse> handleTodoNotFoundException(final TodoNotFoundException e){
+        log.error(e.getMessage(), e);
+        return ResponseEntity.status(e.getErrorCode().getHttpStatus())
+                .body(new ExceptionResponse(e.getErrorCode()));
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ExceptionResponse> handleException(final Exception e) {
         log.error(e.getMessage(), e);
         return ResponseEntity.internalServerError()
                 .body(new ExceptionResponse(SERVER_ERROR));
     }
+
+
 }

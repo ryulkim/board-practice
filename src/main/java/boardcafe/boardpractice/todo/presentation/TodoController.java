@@ -25,4 +25,10 @@ public class TodoController {
         final TodoItem todoItem = todoService.createTodo(todoCreateRequest);
         return ResponseEntity.created( URI.create("/todos"+todoItem.id())).body(todoItem);
     }
+
+    @PatchMapping("/{todoId}")
+    public ResponseEntity<Void> updateTodoCompleted(@PathVariable("todoId") Long todoId){
+        todoService.updateTodoCompleted(todoId);
+        return ResponseEntity.noContent().build();
+    }
 }
