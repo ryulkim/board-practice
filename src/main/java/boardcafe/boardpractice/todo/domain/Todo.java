@@ -20,4 +20,8 @@ public class Todo extends BaseEntity {
     private String content;
     private boolean completed=Boolean.FALSE;
     private boolean deleted=Boolean.FALSE;
+
+    public Todo(final String content){
+        this.content=content;
+    }
 }
