@@ -1,6 +1,5 @@
 package boardcafe.boardpractice.todo.application;
 
-import boardcafe.boardpractice.common.exception.ErrorCode;
 import boardcafe.boardpractice.todo.application.response.TodoItem;
 import boardcafe.boardpractice.todo.application.response.TodosResponse;
 import boardcafe.boardpractice.todo.domain.Todo;
@@ -22,7 +21,7 @@ public class TodoService {
     private final TodoRepository todoRepository;
 
     public TodosResponse getTodos(){
-        final List<Todo> todos = todoRepository.findAll();
+        final List<Todo> todos = todoRepository.findAllByDeletedFalse();
         return new TodosResponse(todos.stream()
                 .map(TodoItem::of)
                 .toList());
