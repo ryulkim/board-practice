@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static boardcafe.boardpractice.common.exception.ErrorCode.NOT_FOUND_TODO_ID;
+
 @Transactional(readOnly=true)
 @RequiredArgsConstructor
 @Service
@@ -34,7 +36,13 @@ public class TodoService {
 
     @Transactional
     public void updateTodoCompleted(Long todoId){
-        final Todo todo = todoRepository.findById(todoId).orElseThrow(() -> new TodoNotFoundException(ErrorCode.NOT_FOUND_TODO_ID));
+        final Todo todo = todoRepository.findById(todoId).orElseThrow(() -> new TodoNotFoundException(NOT_FOUND_TODO_ID));
         todo.updateCompleted();
+    }
+
+    @Transactional
+    public void deleteTodo(Long todoId){
+        final Todo todo = todoRepository.findByIdAndDeletedFalse(todoId).orElseThrow(()->new TodoNotFoundException(NOT_FOUND_TODO_ID));
+        todo.updateDeleted();
     }
 }

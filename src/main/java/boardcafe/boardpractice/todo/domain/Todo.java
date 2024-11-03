@@ -28,4 +28,8 @@ public class Todo extends BaseEntity {
     public void updateCompleted(){
         this.completed=!this.completed;
     }
+
+    public void updateDeleted(){
+        this.deleted=true;
+    }
 }

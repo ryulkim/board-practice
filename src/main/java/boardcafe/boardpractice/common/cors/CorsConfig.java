@@ -11,7 +11,8 @@ public class CorsConfig implements WebMvcConfigurer {
     public void addCorsMappings(final CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("https://ssafysandbox.vercel.app")
+                .allowCredentials(true)
                 .allowedMethods("*")
-                .allowedHeaders("*");
+                .exposedHeaders("*");
     }
 }
